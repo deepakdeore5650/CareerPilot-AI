@@ -1,0 +1,39 @@
+# Git and editor files
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Build outputs and caches
+**/target
+**/node_modules
+**/dist
+**/build
+**/.cache
+**/.next
+**/.vite
+**/.pytest_cache
+**/__pycache__
+
+# OS / temp files
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/*.tmp
+**/*.swp
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Project docs and sample files that are not needed in the image
+README.md
+**/README.md
+**/*.md
+
+# Uploads and local data
+**/uploads
+**/tmp
+**/coverage

@@ -3,8 +3,9 @@ import { createContext, useEffect, useState} from "react";
 export const usercontext =createContext();
 
 function Appcontext({children}){
-    const backendURL = "http://localhost:8085/resumeAnalyser/entry/v1";
-    const serviceURL = "http://localhost:8085/resumeAnalyserCore/service/v1";
+    const apiBase = import.meta.env.VITE_API_BASE_URL || window.location.origin;
+    const backendURL = `${apiBase}/resumeAnalyser/entry/v1`;
+    const serviceURL = `${apiBase}/resumeAnalyserCore/service/v1`;
     const [islogged,setislogged]=useState(false)
     const [isprevious,setisprevious]=useState(false)
     const [username,setusername]=useState("")

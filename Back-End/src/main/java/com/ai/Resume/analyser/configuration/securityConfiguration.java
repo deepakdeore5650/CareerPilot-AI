@@ -45,11 +45,14 @@ public class securityConfiguration implements WebMvcConfigurer {
     @Value("${uploads.path}")
     private String uploadsPath;
 
+    @Value("${app.cors.allowed-origins:http://localhost:5173}")
+    private String allowedOrigins;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/resumeAnalyser/entry/v1/**", "/resumeAnalyserCore/service/v1/uploads/**", "/uploads/**", "/oauth2/**", "/", "/login", "/forgotpassword", "/static/**", "/index.html", "/manifest.json", "/assets/**")
+                        .requestMatchers("/resumeAnalyser/entry/v1/**", "/resumeAnalyserCore/service/v1/uploads/**", "/uploads/**", "/oauth2/**", "/", "/login", "/forgotpassword", "/static/**", "/index.html", "/manifest.json", "/assets/**", "/actuator/health", "/actuator/health/**", "/error")
                         .permitAll()
                         .anyRequest().authenticated())
                 .cors(Customizer.withDefaults())
@@ -74,7 +77,10 @@ public class securityConfiguration implements WebMvcConfigurer {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        configuration.setAllowedOrigins(Arrays.stream(allowedOrigins.split(","))
+                .map(String::trim)
+                .filter(value -> !value.isEmpty())
+                .toList());
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
