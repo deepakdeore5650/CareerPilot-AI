@@ -256,3 +256,84 @@
     transform: translateX(100%);
   }
 }
+/* ===== Mobile hamburger drawer ===== */
+
+.hamburgerButton {
+  display: none;
+}
+
+.closeButton {
+  display: none;
+}
+
+.sidebarOverlay {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .pageWrapper {
+    padding-top: 76px;
+  }
+
+  .hamburgerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.95);
+    color: #fff;
+    cursor: pointer;
+    z-index: 60;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 82vw;
+    min-height: unset;
+    border-radius: 0;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 70;
+    overflow-y: auto;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 65;
+  }
+
+  .sidebarHeader {
+    position: relative;
+    padding-right: 34px;
+  }
+
+  .closeButton {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+  }
+}
