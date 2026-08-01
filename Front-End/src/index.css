@@ -1,0 +1,36 @@
+/* Global mobile safety net */
+
+/* Prevent iOS Safari from auto-zooming when you tap an input */
+input, select, textarea {
+    font-size: 16px;
+}
+
+/* Never let images/videos overflow their container on small screens */
+img, video, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Keep any wide table/code block scrollable instead of breaking layout */
+table, pre {
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Comfortable tap targets on touch devices (Apple/Google guideline: 44px) */
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+    button, .btncontainer button, input[type="submit"] {
+        min-height: 44px;
+    }
+}
+
+/* Stop horizontal scroll sneaking in from any stray fixed-width element */
+html, body, #root {
+    max-width: 100%;
+    overflow-x: hidden;
+}
