@@ -701,3 +701,215 @@
         padding: 24px;
     }
 }
+
+/* aaaaaa */
+
+
+/* ============ HERO TYPOGRAPHY (currently unstyled — fixes plain heading) ============ */
+
+.heroPanel h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px 0;
+    background: linear-gradient(110deg, #ffffff 20%, #60a5fa 40%, #22d3ee 55%, #ffffff 75%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerText 7s ease-in-out infinite;
+}
+
+.heroPanel > p {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    line-height: 1.65;
+    color: #9ca3af;
+    max-width: 560px;
+    margin: 0 0 28px 0;
+}
+
+@keyframes shimmerText {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============ UNIQUE AMBIENT MOTION (background + hero card) ============ */
+
+.glowPoint {
+    animation: driftGlow 16s ease-in-out infinite;
+}
+
+@keyframes driftGlow {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(-40px, 30px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+.gridOverlay {
+    animation: gridDrift 22s linear infinite;
+}
+
+@keyframes gridDrift {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 44px 44px, 44px 44px; }
+}
+
+.heroPanel {
+    position: relative;
+    overflow: hidden;
+}
+
+.heroPanel::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from 0deg, #3b82f6, #22d3ee, transparent 35%, transparent 65%, #3b82f6);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotateBorder 8s linear infinite;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+@keyframes rotateBorder {
+    to { transform: rotate(360deg); }
+}
+
+/* Button shine sweep on hover/tap */
+.btncontainer button {
+    position: relative;
+    overflow: hidden;
+}
+
+.btncontainer button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.btncontainer button:hover::after {
+    left: 130%;
+}
+
+/* Gentle lift + glow on cards */
+.statusCard,
+.historyCard,
+.suggestionCard {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.statusCard:hover,
+.historyCard:hover,
+.suggestionCard:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.35);
+    box-shadow: 0 16px 40px rgba(59, 130, 246, 0.15);
+}
+
+/* Respect users who disable motion */
+@media (prefers-reduced-motion: reduce) {
+    .heroPanel h1,
+    .glowPoint,
+    .gridOverlay,
+    .heroPanel::before {
+        animation: none !important;
+    }
+}
+
+/* ============ MOBILE POLISH ============ */
+
+@media (max-width: 700px) {
+    .pageGrid {
+        margin: 96px auto 48px;
+        padding: 0 16px;
+        gap: 22px;
+    }
+
+    .heroPanel,
+    .mentorPanel,
+    .historyPanel {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .heroPanel > p {
+        margin-bottom: 22px;
+    }
+
+    .btncontainer {
+        flex-direction: column;
+    }
+
+    .btncontainer button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .statusGrid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .historyHeader h2,
+    .mentorHeader h2 {
+        font-size: 1.35rem;
+    }
+
+    .historyMeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        height: 62px;
+    }
+
+    .navContainer {
+        padding: 0 16px;
+    }
+
+    .nav h1 {
+        font-size: 1.1rem;
+    }
+
+    .pageGrid {
+        margin-top: 84px;
+    }
+
+    .badgeTag {
+        font-size: 0.68rem;
+        padding: 5px 12px;
+    }
+
+    .confirmcontainer,
+    .promptCard {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .confirmationbtns,
+    .promptActions {
+        flex-direction: column-reverse;
+    }
+
+    .confirmationbtns button,
+    .promptActions button {
+        width: 100%;
+    }
+}
