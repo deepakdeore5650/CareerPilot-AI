@@ -454,7 +454,8 @@ public class appService {
 
     public ResponseEntity<?> logout() {
         HttpHeaders headers = new HttpHeaders();
-        ResponseCookie cookie = ResponseCookie.from("entrypasstoken","").httpOnly(true).secure(false).sameSite("Strict").maxAge(0).path("/").build();
+        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "").httpOnly(true).secure(true).sameSite("None").maxAge(0).path("/").build();
+        // ResponseCookie cookie = ResponseCookie.from("entrypasstoken","").httpOnly(true).secure(false).sameSite("Strict").maxAge(0).path("/").build();
         headers.add(HttpHeaders.SET_COOKIE,cookie.toString());
         return new ResponseEntity<>("Successfully loggedOut",headers,HttpStatus.OK);
     }
