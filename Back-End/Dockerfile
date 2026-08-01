@@ -3,9 +3,10 @@
 FROM maven:3.9.11-eclipse-temurin-21 AS build
 WORKDIR /workspace
 
-COPY Back-End/pom.xml ./
-COPY Back-End/.mvn .mvn
-COPY Back-End/src ./src
+COPY pom.xml ./
+COPY .mvn .mvn
+COPY src ./src
+COPY mvnw ./
 
 RUN mvn -B -DskipTests clean package
 
