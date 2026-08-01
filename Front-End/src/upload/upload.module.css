@@ -297,6 +297,21 @@
  }
 }
 
+@media screen and (max-width: 480px) {
+    .nav {
+        padding: 10px 16px;
+    }
+
+    .uploadcontainer, .guidelinescontainer {
+        max-width: 100%;
+        margin: 15px 12px;
+    }
+
+    .uploadcontainer h2 {
+        font-size: 1.3rem;
+    }
+}
+
 
 @media screen and (max-width:431px) {
 
