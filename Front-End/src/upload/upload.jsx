@@ -9,15 +9,19 @@ function Uploadpage() {
     const { serviceURL } = useContext(usercontext)
     const navigate=useNavigate()
     const validate = () => {
-        var inp = document.getElementById("resume")
-        var file = inp.files[0]
-        if (!['application/pdf',
-            'application/msword',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) {
-            toast.error("Upload a resume in pdf/doc format ")
-            inp.value = "";
-            document.getElementById("indication").textContent = "No file uploaded"
-        }
+    var inp = document.getElementById("resume")
+    var file = inp.files[0]
+    var allowedExt = ['.pdf', '.doc', '.docx']
+    var fileName = file.name.toLowerCase()
+    var isValidExt = allowedExt.some(ext => fileName.endsWith(ext))
+
+    if (!isValidExt) {
+        toast.error("Upload a resume in pdf/doc format ")
+        inp.value = "";
+        document.getElementById("indication").textContent = "No file uploaded"
+    }
+    else if (file.size > 2 * 1024 * 1024) {
+        toast.error("Upload a file less than 2MB")
         else if (file.size > 2 * 1024 * 1024) {
             toast.error("Upload a file less than 2MB")
             inp.value = ""
