@@ -215,6 +215,27 @@ function Home() {
             <div className={Styles.gridOverlay} />
             <div className={Styles.glowPoint} />
 
+            <div className={Styles.gridOverlay} />
+<div className={Styles.glowPoint} />
+<div className={Styles.bubbles} aria-hidden="true">
+    {Array.from({ length: 18 }).map((_, i) => {
+        const size = 10 + (i % 6) * 7;
+        return (
+            <span
+                key={i}
+                className={Styles.bubble}
+                style={{
+                    left: `${(i * 53) % 100}%`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    animationDuration: `${13 + (i % 7) * 2.5}s`,
+                    animationDelay: `${-(i % 9) * 2.4}s`,
+                }}
+            />
+        );
+    })}
+</div>
+
             <header className={Styles.nav}>
                 <div className={Styles.navContainer}>
                     <h1>CareerPilot AI</h1>
