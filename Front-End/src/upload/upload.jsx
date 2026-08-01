@@ -22,8 +22,6 @@ function Uploadpage() {
     }
     else if (file.size > 2 * 1024 * 1024) {
         toast.error("Upload a file less than 2MB")
-        else if (file.size > 2 * 1024 * 1024) {
-            toast.error("Upload a file less than 2MB")
             inp.value = ""
             document.getElementById("indication").textContent = "No file uploaded"
         }
