@@ -1,642 +1,273 @@
-<<<<<<< HEAD
 # 🚀 CareerPilot AI
 
-### AI-Powered Resume Analysis & Career Guidance Platform
+**An AI-powered resume analysis and career guidance platform — parse resumes, get an ATS score, close skill gaps, and receive a personalized AI mentor roadmap.**
 
-CareerPilot AI is a modern full-stack AI career development platform that helps users analyze resumes, improve technical skills, receive personalized AI career guidance, and track career growth using intelligent AI mentor systems.
-
-Built using:
-
-* Spring Boot
-* React.js
-* MySQL
-* JWT Authentication
-* Google OAuth 2.0
-* Gemini AI
-
----
-
-# 🌟 Features
-
-## 🔐 Authentication & Security
-
-* JWT Authentication
-* Google OAuth 2.0 Login
-* Secure Session Management
-* Email OTP Verification
-* Password Reset System
-* Protected Routes
-* User Authorization
+<p align="center">
+  <img alt="Java" src="https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white">
+  <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-3.5-brightgreen?logo=springboot&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white">
+  <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white">
+  <img alt="Gemini AI" src="https://img.shields.io/badge/Gemini-AI%20Engine-8E75B2?logo=googlegemini&logoColor=white">
+  <img alt="Google OAuth" src="https://img.shields.io/badge/Google-OAuth%202.0-4285F4?logo=google&logoColor=white">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white">
+</p>
 
 ---
 
-# 📄 AI Resume Analysis
+## 📖 Overview
 
-* Upload Resume (PDF)
-* AI Resume Parsing
-* ATS Score Generation
-* Resume Summary Extraction
-* Missing Skills Detection
-* Resume Optimization Suggestions
-* Resume Strength Analysis
-* AI Resume Feedback
-* Resume History Tracking
+**CareerPilot AI** is a full-stack platform that helps students and professionals level up their careers using AI. Upload a resume and get an instant AI-driven ATS score, skill-gap breakdown, and improvement suggestions — then get a personalized learning roadmap and career guidance from the built-in AI mentor, all backed by a real job-search integration.
+
+The project ships with Docker images for both services and is deployment-ready for Render with PostgreSQL.
 
 ---
 
-# 🤖 AI Mentor Dashboard
+## ✨ Key Features
 
-* Personalized Career Guidance
-* AI Career Suggestions
-* Skill Gap Analysis
-* Learning Roadmaps
-* Recommended Technologies
-* Project Recommendations
-* Career Development Insights
-* Interview Preparation Tips
-* Portfolio Improvement Suggestions
+### 🔐 Authentication & Security
+- JWT-based authentication with protected routes
+- **Google OAuth 2.0** one-click login with automatic profile creation
+- Email OTP verification for registration and password reset
+- Secure session management and user authorization
 
----
+### 📄 AI Resume Analysis
+- Upload a resume (PDF) for AI-powered parsing (via Spring AI + Apache Tika)
+- Automatic **ATS score** generation
+- Resume summary extraction and strength analysis
+- Missing-skills detection with optimization suggestions
+- Full resume analysis history, saved and retrievable per report
 
-# 👤 User Profile System
+### 🤖 AI Mentor Dashboard
+- Personalized career guidance powered by **Google Gemini**
+- Skill-gap analysis and recommended technologies to learn
+- Custom learning roadmaps and project recommendations
+- Interview preparation tips and portfolio improvement suggestions
+- Full AI mentor history, so past guidance is never lost
 
-* Update User Profile
-* Upload Profile Photo
-* Add Skills & Career Goals
-* LinkedIn & GitHub Integration
-* Bio & Experience Management
-* Profile Completion Percentage
-* Google User Profile Support
+### 👤 User Profile System
+- Editable profile with skills, career goals, bio, and experience
+- Profile photo upload
+- LinkedIn & GitHub integration
+- Profile completion percentage tracker
+- Google-linked profile support
 
----
+### 🔎 Job Search Integration
+- Live job recommendations pulled from the **Adzuna Jobs API**
+- Matching driven by user skills, career goals, and resume analysis results
+- Career role and technology-based job suggestions
 
-# 📚 History Management
-
-## Resume Analysis History
-
-* Previous Resume Reports
-* ATS Score History
-* Resume Feedback Tracking
-* Full Detailed Analysis Reports
-
-## AI Mentor History
-
-* Previous AI Mentor Reports
-* Career Guidance History
-* Personalized Learning Reports
-* Detailed AI Suggestions
+### 📧 Email Delivery
+- Transactional email via **Brevo** and Spring Mail (SMTP)
+- Used for OTP verification, password resets, and account security notices
 
 ---
 
-# 🔎 Job Search Integration
+## 🏗️ Tech Stack
 
-Integrated intelligent job recommendation system using:
-
-* user skills
-* career goals
-* resume analysis
-* missing skills
-
-Features:
-
-* Job Recommendations
-* Career Role Matching
-* Technology-based Job Suggestions
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 18, Vite, React Router, Framer Motion, Axios, React Toastify |
+| **Backend** | Java 21, Spring Boot 3.5, Spring Security, Spring Data JPA / Hibernate |
+| **Database** | PostgreSQL |
+| **AI Engine** | Google Gemini (via Spring AI + `google-genai`), Apache Tika for document parsing |
+| **Authentication** | JWT (jjwt) + Google OAuth 2.0 |
+| **Email** | Brevo API + Spring Boot Mail (SMTP) |
+| **Job Search** | Adzuna Jobs API |
+| **DevOps** | Docker, Docker Compose, Spring Boot Actuator, Render |
 
 ---
 
-# 📧 Email OTP Verification
+## 🗂️ Project Structure
 
-Implemented secure OTP-based email verification system for:
-
-* account registration
-* password reset
-* account security
-
-Integrated using:
-
-* Gmail SMTP
-* Brevo Mail Service
-
----
-
-# 🔐 Google OAuth 2.0 Integration
-
-Integrated Google Authentication for:
-
-* one-click login
-* automatic profile creation
-* secure authentication
-* profile synchronization
-
----
-
-# 🎨 Modern UI/UX
-
-* Responsive Design
-* Animated Components
-* Glassmorphism UI
-* AI Dashboard Layout
-* Interactive Cards
-* Smooth Animations
-* Professional Modern Interface
-* Mobile-Friendly Design
-
----
-
-# 🛠️ Tech Stack
-
-## Frontend
-
-* React.js
-* React Router DOM
-* Framer Motion
-* CSS Modules
-* Axios
-* React Toastify
-
----
-
-## Backend
-
-* Spring Boot
-* Spring Security
-* JWT Authentication
-* Hibernate / JPA
-* REST APIs
-
----
-
-## Database
-
-* MySQL
-
----
-
-## AI Integration
-
-* Google Gemini AI
-
----
-
-## Authentication
-
-* Google OAuth 2.0
-* JWT Tokens
-
----
-
-## 📂 Project Structure
-
-### Frontend (React + Vite)
-
-```text
-Front-End
-│
-├── dist
-│   ├── assets
-│   └── index.html
-│
-├── node_modules
-│
-├── src
-│   ├── aiMentor
-│   ├── analyse
-│   ├── analysis
-│   ├── components
-│   ├── home
-│   ├── login
-│   ├── profile
-│   ├── resetpassword
-│   ├── upload
-│   ├── App.css
-│   ├── App.jsx
-│   ├── appcontext.jsx
-│   ├── googlebtn.jsx
-│   ├── index.css
-│   ├── loadstyle.module.css
-│   └── main.jsx
-│
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-└── README.md
+```
+CareerPilot-AI/
+├── Back-End/                              # Spring Boot API
+│   ├── src/main/java/com/ai/Resume/analyser/
+│   │   ├── configuration/                  # Security config, entry point handling
+│   │   ├── controller/                     # REST controllers (App, Security, Front)
+│   │   ├── jwt/                            # JWT filter & token service
+│   │   ├── mail/                           # Email/OTP service
+│   │   ├── model/                          # Entities & DTOs (resume, jobs, profile, history)
+│   │   ├── repository/                     # Spring Data JPA repositories
+│   │   └── service/                        # Business logic & OAuth success/failure handlers
+│   └── Dockerfile
+├── Front-End/                             # React + Vite SPA
+│   ├── src/
+│   │   ├── home/                           # Landing & dashboard overview
+│   │   ├── login/                          # Auth pages (JWT + Google OAuth)
+│   │   ├── upload/                         # Resume upload flow
+│   │   ├── analyse / analysis/             # ATS analysis & history views
+│   │   ├── aiMentor/                       # AI mentor dashboard & history
+│   │   ├── profile/                        # Profile management
+│   │   ├── resetpassword/                  # OTP-based password reset
+│   │   └── components/                     # Shared UI components
+│   └── Dockerfile
+├── docker-compose.yml                      # Backend + Frontend + PostgreSQL stack
+└── .env.example                            # Required environment variables
 ```
 
-### Backend (Spring Boot)
+---
 
-```text
-Back-End
-│
-├── .mvn
-│   └── wrapper
-│
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com.ai.Resume.analyser
-│   │   │       ├── configuration
-│   │   │       ├── controller
-│   │   │       ├── jwt
-│   │   │       ├── mail
-│   │   │       ├── model
-│   │   │       ├── repository
-│   │   │       ├── service
-│   │   │       └── ResumeAnalyserApplication.java
-│   │   │
-│   │   └── resources
-│   │       ├── static
-│   │       ├── templates
-│   │       └── application.properties
-│   │
-│   └── test
-│
-├── target
-├── uploads
-├── mvnw
-├── mvnw.cmd
-└── pom.xml
-```
+## 🔌 API Overview
 
-# 📸 Application Screenshots
+| Module | Base Path | Highlights |
+|---|---|---|
+| **Auth & Security** | `/resumeAnalyser/entry/v1` | Register, email OTP verify, login, password reset OTP flow |
+| **Core App** | `/resumeAnalyserCore/service/v1` | Resume extract/analyze, analysis history, AI mentor save/history, career suggestions, profile CRUD, profile photo, logout, delete account |
 
-## 🏠 Home Dashboard & AI Overview
-<img width="1898" height="832" alt="Screenshot 2026-05-28 162042" src="https://github.com/user-attachments/assets/d159f6d2-0317-47b7-a655-ba7726175ae3" /><img width="1897" height="802" alt="Screenshot 2026-05-28 162020" src="https://github.com/user-attachments/assets/ec2538fe-3cb3-4519-8bba-7e7bee1a6608" />
-<img width="1911" height="803" alt="Screenshot 2026-05-28 162002" src="https://github.com/user-attachments/assets/d05030e7-6942-4cc9-8d80-0f99f50199ff" />
-<br/><br/><br/>
+> 📌 Protected routes require a valid JWT in the `Authorization: Bearer <token>` header. Google OAuth login issues a session that's exchanged for a JWT on success.
 
-## 🔐 Authentication & User Access
-<img width="1885" height="910" alt="Screenshot 2026-05-28 161803" src="https://github.com/user-attachments/assets/353936bf-3f4d-4427-ae34-959f5861d4cf" />
-<br/><br/><br/>
+---
 
-<img width="1891" height="718" alt="Screenshot 2026-05-28 161830" src="https://github.com/user-attachments/assets/1d0a9095-7543-454e-9eea-270579c7f031" />
-<img width="1894" height="381" alt="Screenshot 2026-05-28 161846" src="https://github.com/user-attachments/assets/ecf23c61-f664-4805-abbe-e9f24d6806bf" />
-<br/><br/><br/>
+## 🚀 Getting Started
 
-## 👤 User Profile Management
-<img width="1910" height="910" alt="Screenshot 2026-05-28 162130" src="https://github.com/user-attachments/assets/6f00cf5a-5f37-4a5c-9f8b-49d22e025b5f" />
-<img width="1897" height="702" alt="Screenshot 2026-05-28 162146" src="https://github.com/user-attachments/assets/fe4673ae-721c-4024-9c8d-848eb401b908" />
-<br/><br/><br/>
+### Prerequisites
+- Java 21+
+- Node.js 18+
+- PostgreSQL (or Docker)
+- A [Google AI (Gemini) API key](https://ai.google.dev/)
+- A [Google OAuth 2.0](https://console.cloud.google.com/) client ID & secret
+- A [Brevo](https://www.brevo.com/) account for transactional email
+- An [Adzuna](https://developer.adzuna.com/) app ID & API key for job search
 
-## 🤖 AI Mentor Dashboard & AI Mentor History
-<img width="1910" height="908" alt="Screenshot 2026-05-28 162214" src="https://github.com/user-attachments/assets/41380013-63cb-4324-b13d-547c438e4aa1" />
-<img width="1915" height="683" alt="Screenshot 2026-05-28 162303" src="https://github.com/user-attachments/assets/30b994b1-aa18-44e5-8083-6bcff4073535" />
-<img width="1905" height="872" alt="Screenshot 2026-05-28 162320" src="https://github.com/user-attachments/assets/ffc83b92-37db-49c6-bb71-3ca9f62dbbe0" />
-<br/><br/><br/>
-
-## 📄 Resume Analysis & ATS Report
-<img width="1906" height="909" alt="Screenshot 2026-05-28 162629 - Copy" src="https://github.com/user-attachments/assets/94583178-db4e-416f-b089-52fa2e70ef0a" />
-<img width="1904" height="727" alt="Screenshot 2026-05-28 162656" src="https://github.com/user-attachments/assets/ad925425-b742-433b-94b6-5bee3bf018fb" />
-<img width="1901" height="639" alt="Screenshot 2026-05-28 162709 - Copy" src="https://github.com/user-attachments/assets/d830ee66-5f2a-4a6a-97c1-e93af8b8f719" />
-<br/><br/><br/>
-
-<img width="1914" height="908" alt="Screenshot 2026-05-28 162344" src="https://github.com/user-attachments/assets/07cf6d95-87b7-40b0-b38d-2ce0d4801e47" />
-<br/><br/><br/>
-
-## 📚 Resume Analysis & Resume History
-<img width="1888" height="911" alt="Screenshot 2026-05-28 162424" src="https://github.com/user-attachments/assets/61343001-55a3-4720-a17a-d622e4cd8cc3" />
-<img width="1916" height="636" alt="Screenshot 2026-05-28 162441" src="https://github.com/user-attachments/assets/d98b9431-8a52-4bcd-ba7c-11ccc7daa612" />
-<br/><br/><br/>
-
-<img width="1908" height="904" alt="Screenshot 2026-05-28 162358" src="https://github.com/user-attachments/assets/d5057968-d0e4-4405-8354-31d27a0c55d9" />
-
-# ⚙️ Installation & Setup
-
-## 1️⃣ Clone Repository
-
+### 1. Clone the repository
 ```bash
-git clone https://github.com/Deepak8767/CareerPilot-AI.git
+git clone https://github.com/deepakdeore5650/CareerPilot-AI.git
+cd CareerPilot-AI
 ```
 
----
-
-## 2️⃣ Backend Setup
-
-Navigate to backend folder:
-
-```bash
-cd Back-End
-```
-
----
-
-## Configure application.properties
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/resume_analyser
-
-spring.datasource.username=root
-
-spring.datasource.password=YOUR_PASSWORD
-
-jwt-key=${JWT_KEY}
-
-genKey=${GEMINI_API_KEY}
-
-apiKey=${BREVO_API_KEY}
-
-spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
-
-spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
-```
-
----
-
-## Run Backend
-
-```bash
-mvn spring-boot:run
-```
-
-Backend runs on:
-
-```bash
-http://localhost:8085
-```
-
----
-
-## 3️⃣ Frontend Setup
-
-Navigate to frontend folder:
-
-```bash
-cd Front-End
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run frontend:
-
-```bash
-npm run dev
-```
-
-Frontend runs on:
-
-```bash
-http://localhost:5173
-```
-
----
-
-
-# 📌 Future Enhancements
-
-* AI Career Chatbot
-* AI Cover Letter Generator
-* Mock Interview System
-* Real-time Job Matching
-* Resume Builder
-* AI Mock Tests
-* Multi-language Support
-* AI Portfolio Review
-
----
-
-# 👨‍💻 Developer
-
-### Deepak Deore
-
----
-
-# ⭐ Project Goal
-
-CareerPilot AI aims to help students and developers:
-
-* improve resumes
-* learn in-demand technologies
-* build better projects
-* prepare for interviews
-* grow careers using AI-powered mentorship
-
----
-
-# 📜 License
-
-This project is created for educational, learning, and portfolio purposes.
-=======
-# CareerPilot AI
-
-CareerPilot AI is a Java Spring Boot backend and React frontend application for resume analysis and career guidance. This repository is prepared for Docker-based local development and deployment to Render.
-
-## Project architecture
-
-This project is split into three main runtime pieces:
-
-- `Back-End/` - Spring Boot API running on port `8086`
-- `Front-End/` - React application served on port `5173`
-- `PostgreSQL` - database container running inside the same Docker network
-
-The browser calls the API using the host-mapped backend port `http://localhost:8086`, while the database remains internal to Docker and is accessed by the backend through the service name `postgres`.
-
-The backend and PostgreSQL configuration already existed and were kept intact. The missing frontend Docker integration was added without replacing the working backend container setup.
-
-## Project structure
-
-- `Back-End/` - Spring Boot application
-- `Front-End/` - React + Vite frontend
-- `docker-compose.yml` - Local development stack with backend + frontend + PostgreSQL
-- `.env.example` - Required environment variables
-- `.dockerignore` - Docker build exclusions
-- `Back-End/Dockerfile` - Multi-stage production Docker image
-- `Front-End/Dockerfile` - Frontend container for Vite preview
-
-## Prerequisites
-
-- Docker Desktop or Docker Engine
-- Docker Compose
-- Node.js 18+ (for frontend development only)
-- Java 21 (for local backend development outside Docker)
-
-## Environment variables
-
-Copy `.env.example` to `.env` and update secrets before running locally or deploying:
-
+### 2. Configure environment variables
 ```bash
 cp .env.example .env
 ```
+Fill in your database, Gemini, Google OAuth, Brevo, Adzuna, and JWT values.
 
-Required variables:
-
-- `POSTGRES_DB` - PostgreSQL database name
-- `POSTGRES_USER` - PostgreSQL username
-- `POSTGRES_PASSWORD` - PostgreSQL password
-- `APP_PORT` - Port exposed by the backend container
-- `DATABASE_URL` - Full PostgreSQL JDBC URL for the app
-- `API_KEY` - Brevo API key for email sending
-- `GEN_KEY` - Google GenAI API key
-- `GOOGLE_CLIENT_ID` - Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
-- `APPLICATION_ID` - Adzuna app ID
-- `APPLICATION_API_KEY` - Adzuna API key
-- `JWT_SECRET` - JWT signing secret
-- `CORS_ALLOWED_ORIGINS` - Allowed frontend origins, such as `http://localhost:5173`
-- `VITE_API_BASE_URL` - Frontend API base URL for the React app
-- `UPLOADS_PATH` - Upload directory inside the container
-
-Important: the app must use PostgreSQL service discovery rather than `localhost`. In Docker Compose, the backend uses `postgres` as the host.
-
-## Local Docker build
-
-From the repository root:
-
-```bash
-docker build -f Back-End/Dockerfile -t careerpilot-ai .
-```
-
-Run the container directly:
-
-```bash
-docker run --rm -p 8086:8086 \
-  -e PORT=8086 \
-  -e DATABASE_URL=postgresql://postgres:change_me_strong_password@host.docker.internal:5432/resume_analayzer \
-  -e DB_USERNAME=postgres \
-  -e DB_PASSWORD=change_me_strong_password \
-  -e API_KEY=change-me \
-  -e GEN_KEY=change-me \
-  -e GOOGLE_CLIENT_ID=change-me \
-  -e GOOGLE_CLIENT_SECRET=change-me \
-  -e APPLICATION_ID=change-me \
-  -e APPLICATION_API_KEY=change-me \
-  -e JWT_SECRET=change-me \
-  -e CORS_ALLOWED_ORIGINS=http://localhost:5173 \
-  -e UPLOADS_PATH=/app/uploads \
-  careerpilot-ai
-```
-
-The backend listens on port `8086` in Docker, and the frontend should call `http://localhost:8086` when configured via `VITE_API_BASE_URL`.
-
-## Docker Compose commands
-
-Start the full stack:
-
+### 3. Run with Docker Compose (recommended)
 ```bash
 docker compose up --build -d
 ```
+- Backend → `http://localhost:8086`
+- Frontend → `http://localhost:5173`
 
-Check status:
+### 4. Or run manually
 
+**Backend**
 ```bash
-docker compose ps
-```
-
-View logs:
-
-```bash
-docker compose logs -f app
-```
-
-Stop the stack:
-
-```bash
-docker compose down
-```
-
-Stop and remove volumes:
-
-```bash
-docker compose down -v
-```
-
-## Backend local development
-
-From the `Back-End` directory:
-
-```bash
+cd Back-End
 ./mvnw spring-boot:run
 ```
 
-The application reads environment variables through `application.properties` using `${VAR:default}` placeholders. For local development without Docker, a local PostgreSQL instance can be configured using a `.env` file or exported shell variables.
-
-## Database and migrations
-
-No Flyway or Liquibase migration scripts were found in this project. The application uses JPA/Hibernate with `spring.jpa.hibernate.ddl-auto=update`, so the database schema is auto-created/updated when the app starts.
-
-If you want to trigger the schema update manually with the app running:
-
+**Frontend**
 ```bash
-./mvnw spring-boot:run
+cd Front-End
+npm install
+npm run dev
 ```
 
-The app will create/update tables automatically if the database is reachable.
+---
 
-## Render deployment
+## 🔐 Environment Variables
 
-1. Create a new Render Web Service.
-2. Set the build type to `Docker`.
-3. Point the Docker context to the repository root or the `Back-End` directory depending on your Render configuration.
-4. Add the same environment variables from `.env.example` to the Render service.
-5. Use `PORT` as the application port value from Render.
-6. Ensure `DATABASE_URL` points to the managed PostgreSQL instance, not `localhost`.
-7. Keep `CORS_ALLOWED_ORIGINS` set to the frontend URL on Render.
-8. Deploy the service.
+| Variable | Description |
+|---|---|
+| `POSTGRES_DB` / `POSTGRES_USER` / `POSTGRES_PASSWORD` | PostgreSQL database credentials |
+| `POSTGRES_PORT` | PostgreSQL port (default `5432`) |
+| `APP_PORT` | Backend container port (default `8086`) |
+| `DATABASE_URL` | Full PostgreSQL JDBC URL used by the backend |
+| `CORS_ALLOWED_ORIGINS` | Allowed frontend origin(s) for CORS |
+| `VITE_API_BASE_URL` | Backend API base URL used by the frontend |
+| `API_KEY` | Brevo API key for transactional email |
+| `GEN_KEY` | Google Gemini / GenAI API key |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth 2.0 credentials |
+| `APPLICATION_ID` / `APPLICATION_API_KEY` | Adzuna Jobs API credentials |
+| `JWT_SECRET` | Secret used to sign JWT tokens |
+| `UPLOADS_PATH` | Directory for uploaded resume files inside the container |
 
-Example Render environment variables:
+> ⚠️ Never commit a real `.env` file — `.env.example` is the source of truth for required keys.
 
-```env
-PORT=8086
-DATABASE_URL=postgresql://user:password@host:5432/dbname
-DB_USERNAME=user
-DB_PASSWORD=password
-API_KEY=your_api_key
-GEN_KEY=your_genai_key
-GOOGLE_CLIENT_ID=your_google_id
-GOOGLE_CLIENT_SECRET=your_google_secret
-APPLICATION_ID=your_adzuna_id
-APPLICATION_API_KEY=your_adzuna_key
-JWT_SECRET=your_jwt_secret
-CORS_ALLOWED_ORIGINS=https://your-frontend.onrender.com
-UPLOADS_PATH=/app/uploads
-```
+---
 
-## Health checks
+## ☁️ Deployment (Render)
 
-The backend exposes a health endpoint:
+1. Create a new Render **Web Service** with build type `Docker`.
+2. Point the Docker context to the repository root (uses `Back-End/Dockerfile`).
+3. Add all environment variables from `.env.example` to the Render dashboard.
+4. Set `PORT` to Render's assigned port value.
+5. Point `DATABASE_URL` at your managed PostgreSQL instance (not `localhost`).
+6. Set `CORS_ALLOWED_ORIGINS` to your deployed frontend URL.
+7. Deploy the backend, then deploy the frontend with `VITE_API_BASE_URL` pointing at the backend's public URL.
 
+**Health check:**
 ```bash
 curl http://localhost:8086/actuator/health
 ```
+Expected response: `UP`.
 
-Expected result: `UP`.
+---
 
-## Troubleshooting
+## 🐳 Docker Notes
 
-### Application does not start
+- `Back-End/Dockerfile` — multi-stage, non-root, optimized production image
+- `Front-End/Dockerfile` — Vite build served via preview/static container
+- `docker-compose.yml` — backend + frontend + PostgreSQL with persistent volumes and internal networking
+- Database schema is managed via JPA/Hibernate (`ddl-auto=update`) — no separate migration step is required
+- In Docker Compose, the backend connects to PostgreSQL using the service name `postgres`, not `localhost`
 
-- Check the logs with `docker compose logs -f app`
-- Confirm the PostgreSQL container is healthy
-- Confirm `.env` values are populated and not blank
-- Ensure `DATABASE_URL` uses the Docker service hostname `postgres` in Compose
+---
 
-### PostgreSQL connection fails
+## 🛠️ Troubleshooting
 
-- Verify the database container is running: `docker compose ps postgres`
+**App won't start**
+- Check logs: `docker compose logs -f app`
+- Confirm the PostgreSQL container is healthy and `.env` values are populated
+
+**PostgreSQL connection fails**
+- Verify the container is running: `docker compose ps postgres`
 - Test connectivity: `docker compose exec postgres psql -U postgres -d resume_analayzer -c 'SELECT 1;'`
-- Check that the app and database are on the same Docker network
 
-### Frontend cannot reach backend
+**Frontend can't reach the backend**
+- Confirm `CORS_ALLOWED_ORIGINS` matches the frontend's actual origin
+- Confirm `VITE_API_BASE_URL` points to the correct backend URL
 
-- Confirm CORS is configured with the correct origin
-- Verify the frontend uses `VITE_API_BASE_URL` and points to the backend URL
-- In local development, the frontend is typically served on `http://localhost:5173`
+---
 
-### Container health check fails
+## 📌 Future Enhancements
 
-- Confirm the app listens on the correct port value
-- Check if the health endpoint is reachable on `/actuator/health`
-- Review runtime logs for database initialization or startup exceptions
+- [ ] AI career chatbot
+- [ ] AI cover letter generator
+- [ ] Mock interview system
+- [ ] Real-time job matching
+- [ ] Resume builder
+- [ ] AI mock tests
+- [ ] Multi-language support
+- [ ] AI portfolio review
 
-## Notes
+---
 
-- The Docker image is multi-stage, non-root, and optimized for smaller production builds.
-- `docker-compose.yml` includes app and PostgreSQL services, persistent volumes, internal networking, and restart policies.
-- The backend no longer hardcodes MySQL or `localhost` values for database access.
->>>>>>> f66c3c2 (Dockerize full-stack application with PostgreSQL)
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m "Add your feature"`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 👨‍💻 Author
+
+**Deepak Deore**
+🔗 [GitHub](https://github.com/deepakdeore5650)
+
+---
+
+## ⭐ Project Goal
+
+CareerPilot AI aims to help students and developers improve their resumes, learn in-demand technologies, build stronger projects, prepare for interviews, and grow their careers using AI-powered mentorship.
+
+---
+
+<p align="center">If you found this project useful, consider giving it a ⭐ on GitHub!</p>
