@@ -13,6 +13,12 @@
   <img alt="Docker" src="https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white">
 </p>
 
+<p align="center">
+  <a href="https://careerpilot-ai-1-cgrw.onrender.com/"><b>🌐 Live Demo</b></a>
+</p>
+
+> ⚠️ Hosted on Render's free tier — the app may take up to a minute to wake up on first load.
+
 ---
 
 ## 📖 Overview
