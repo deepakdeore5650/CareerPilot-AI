@@ -37,7 +37,7 @@ The project ships with Docker images for both services and is deployment-ready f
 - Email OTP verification for registration and password reset
 - Secure session management and user authorization
 
-### 📄 AI Resume Analysis
+### 📄  AI Resume Analysis
 - Upload a resume (PDF) for AI-powered parsing (via Spring AI + Apache Tika)
 - Automatic **ATS score** generation
 - Resume summary extraction and strength analysis
