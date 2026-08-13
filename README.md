@@ -31,7 +31,7 @@ The project ships with Docker images for both services and is deployment-ready f
 
 ## ✨ Key Features
 
-### 🔐 Authentication & Security
+### 🔐 Authentication & Security 
 - JWT-based authentication with protected routes
 - **Google OAuth 2.0** one-click login with automatic profile creation
 - Email OTP verification for registration and password reset
