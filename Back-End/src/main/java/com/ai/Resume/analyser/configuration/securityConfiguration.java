@@ -4,6 +4,7 @@ package com.ai.Resume.analyser.configuration;
 import com.ai.Resume.analyser.jwt.jwtFilter;
 import com.ai.Resume.analyser.service.failureHandler;
 import com.ai.Resume.analyser.service.successHandler;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
+import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -25,6 +30,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 @Configuration
 @EnableWebSecurity
@@ -49,7 +55,8 @@ public class securityConfiguration implements WebMvcConfigurer {
     private String allowedOrigins;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           OAuth2AuthorizationRequestResolver authorizationRequestResolver) throws Exception {
         return http
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/resumeAnalyser/entry/v1/**", "/resumeAnalyserCore/service/v1/uploads/**", "/uploads/**", "/oauth2/**", "/", "/login", "/forgotpassword", "/static/**", "/index.html", "/manifest.json", "/assets/**", "/actuator/health", "/actuator/health/**", "/error")
@@ -61,10 +68,47 @@ public class securityConfiguration implements WebMvcConfigurer {
                 .addFilterBefore(jwtfilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth -> oauth
                         .loginPage("/login")
+                        .authorizationEndpoint(endpoint -> endpoint
+                                .authorizationRequestResolver(authorizationRequestResolver))
                         .successHandler(successHandler)
                         .failureHandler(failureHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
+    }
+
+    @Bean
+    public OAuth2AuthorizationRequestResolver authorizationRequestResolver(
+            ClientRegistrationRepository clientRegistrationRepository) {
+        DefaultOAuth2AuthorizationRequestResolver defaultResolver =
+                new DefaultOAuth2AuthorizationRequestResolver(
+                        clientRegistrationRepository, "/oauth2/authorization");
+
+        return new OAuth2AuthorizationRequestResolver() {
+            @Override
+            public OAuth2AuthorizationRequest resolve(HttpServletRequest request) {
+                return addAccountSelectionPrompt(defaultResolver.resolve(request));
+            }
+
+            @Override
+            public OAuth2AuthorizationRequest resolve(HttpServletRequest request, String registrationId) {
+                return addAccountSelectionPrompt(defaultResolver.resolve(request, registrationId));
+            }
+
+            private OAuth2AuthorizationRequest addAccountSelectionPrompt(
+                    OAuth2AuthorizationRequest authorizationRequest) {
+                if (authorizationRequest == null) {
+                    return null;
+                }
+
+                HashMap<String, Object> additionalParameters =
+                        new HashMap<>(authorizationRequest.getAdditionalParameters());
+                additionalParameters.put("prompt", "select_account");
+
+                return OAuth2AuthorizationRequest.from(authorizationRequest)
+                        .additionalParameters(additionalParameters)
+                        .build();
+            }
+        };
     }
 
     @Bean
