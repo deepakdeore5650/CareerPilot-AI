@@ -54,7 +54,7 @@ public class successHandler implements AuthenticationSuccessHandler {
         ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("None").secure(true).build();
         // ResponseCookie cookie = ResponseCookie.from("entrypasstoken",token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("Strict").secure(false).build();
         response.addHeader("Set-Cookie",cookie.toString());
-        response.sendRedirect("/");
+        response.sendRedirect("https://localservice-provider-1.onrender.com/");
 
 
 
