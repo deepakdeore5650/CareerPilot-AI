@@ -8,6 +8,7 @@ import com.ai.Resume.analyser.repository.otpVerifyRepo;
 import com.ai.Resume.analyser.repository.usersTableRepo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -39,6 +40,12 @@ public class securityService {
     private mailService mailservice;
     @Autowired
     private otpVerifyRepo otpVerifyRepository;
+
+    @Value("${app.cookie.secure:false}")
+    private boolean cookieSecure;
+
+    @Value("${app.cookie.same-site:Strict}")
+    private String cookieSameSite;
 
     
 
@@ -106,10 +113,15 @@ public class securityService {
             String token = jwt.generateToken(req.getEmail());
             usersTable user =usersTableRepository.findById(req.getEmail()).orElse(null);
             HttpHeaders headers = new HttpHeaders();
-            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("None").secure(true).build();
-            // ResponseCookie cookie= ResponseCookie.from("entrypasstoken",token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("Strict").secure(false).build();
-            headers.add(HttpHeaders.SET_COOKIE,cookie.toString());
-            loginResponse loginRes=new loginResponse(user.getUsername(), user.getPreviousResults(), user.getProfilePhoto());
+            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token)
+                    .path("/")
+                    .httpOnly(true)
+                    .maxAge(20 * 24 * 60 * 60)
+                    .sameSite("None")
+                    .secure(true)
+                    .build();
+            headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
+            loginResponse loginRes = new loginResponse(user.getUsername(), user.getPreviousResults(), user.getProfilePhoto());
             return new ResponseEntity<>(loginRes,headers,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Invalid credentials ",HttpStatus.UNAUTHORIZED);

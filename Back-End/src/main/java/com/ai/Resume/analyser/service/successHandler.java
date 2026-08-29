@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -26,6 +27,12 @@ public class successHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     private jwtService jwtService;
+
+    @Value("${app.cookie.secure:false}")
+    private boolean cookieSecure;
+
+    @Value("${app.cookie.same-site:Strict}")
+    private String cookieSameSite;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -52,17 +59,14 @@ public class successHandler implements AuthenticationSuccessHandler {
 
         String token = jwtService.generateToken(email);
         ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token)
-        .path("/")
-        .httpOnly(true)
-        .maxAge(20 * 24 * 60 * 60)
-        .sameSite("None")
-        .secure(true)
-        .build();
+                .path("/")
+                .httpOnly(true)
+                .maxAge(20 * 24 * 60 * 60)
+                .sameSite("None")
+                .secure(true)
+                .build();
 
-response.addHeader("Set-Cookie", cookie.toString());
-
-response.sendRedirect("https://careerpilot-ai-1-cgrw.onrender.com/");
-
-
+        response.addHeader("Set-Cookie", cookie.toString());
+        response.sendRedirect("https://careerpilot-ai-1-cgrw.onrender.com/");
     }
 }

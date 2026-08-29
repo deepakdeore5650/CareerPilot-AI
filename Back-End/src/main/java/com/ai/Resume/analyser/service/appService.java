@@ -65,6 +65,12 @@ public class appService {
     @Value("${uploads.path}")
     private String uploadDirectory;
 
+    @Value("${app.cookie.secure:false}")
+    private boolean cookieSecure;
+
+    @Value("${app.cookie.same-site:Strict}")
+    private String cookieSameSite;
+
     @Autowired
     private prevTable previousTableRepo;
 
@@ -454,10 +460,15 @@ public class appService {
 
     public ResponseEntity<?> logout() {
         HttpHeaders headers = new HttpHeaders();
-        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "").httpOnly(true).secure(true).sameSite("None").maxAge(0).path("/").build();
-        // ResponseCookie cookie = ResponseCookie.from("entrypasstoken","").httpOnly(true).secure(false).sameSite("Strict").maxAge(0).path("/").build();
-        headers.add(HttpHeaders.SET_COOKIE,cookie.toString());
-        return new ResponseEntity<>("Successfully loggedOut",headers,HttpStatus.OK);
+        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "")
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("None")
+                .maxAge(0)
+                .path("/")
+                .build();
+        headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
+        return new ResponseEntity<>("Successfully loggedOut", headers, HttpStatus.OK);
     }
     public ResponseEntity<?> getProfile() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -588,10 +599,15 @@ public class appService {
             usersTableRepository.deleteById(uname);
             previousTableRepo.deleteById(uname);
             HttpHeaders headers = new HttpHeaders();
-            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "").httpOnly(true).secure(true).sameSite("None").maxAge(0).path("/").build();
-            // ResponseCookie cookie = ResponseCookie.from("entrypasstoken","").httpOnly(true).secure(false).sameSite("Strict").maxAge(0).path("/").build();
-            headers.add(HttpHeaders.SET_COOKIE,cookie.toString());
-            return new ResponseEntity<>("Account deleted successfully",headers,HttpStatus.OK);
+            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "")
+                    .httpOnly(true)
+                    .secure(true)
+                    .sameSite("None")
+                    .maxAge(0)
+                    .path("/")
+                    .build();
+            headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
+            return new ResponseEntity<>("Account deleted successfully", headers, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to delete",HttpStatus.NOT_FOUND);
         }
