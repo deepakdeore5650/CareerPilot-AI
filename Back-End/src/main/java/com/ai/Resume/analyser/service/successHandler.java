@@ -51,11 +51,17 @@ public class successHandler implements AuthenticationSuccessHandler {
         }
 
         String token = jwtService.generateToken(email);
-        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("None").secure(true).build();
-        // ResponseCookie cookie = ResponseCookie.from("entrypasstoken",token).path("/").httpOnly(true).maxAge(20*24*60*60).sameSite("Strict").secure(false).build();
-        response.addHeader("Set-Cookie",cookie.toString());
-        response.sendRedirect("https://careerpilot-ai-1-cgrw.onrender.com/");
+        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token)
+        .path("/")
+        .httpOnly(true)
+        .maxAge(20 * 24 * 60 * 60)
+        .sameSite("None")
+        .secure(true)
+        .build();
 
+response.addHeader("Set-Cookie", cookie.toString());
+
+response.sendRedirect("https://careerpilot-ai-1-cgrw.onrender.com/");
 
 
     }
