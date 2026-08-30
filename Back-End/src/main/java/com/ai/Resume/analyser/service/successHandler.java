@@ -67,7 +67,7 @@ public class successHandler implements AuthenticationSuccessHandler {
         response.addHeader("Set-Cookie", cookie.toString());
         String redirectUrl = frontendUrl;
         if (redirectUrl == null || redirectUrl.isBlank()) {
-            redirectUrl = "http://localhost:5173";
+            redirectUrl = "https://careerpilot-ai-1-cgrw.onrender.com";
         }
         response.sendRedirect(redirectUrl);
     }
