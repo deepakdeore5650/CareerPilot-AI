@@ -460,13 +460,8 @@ public class appService {
 
     public ResponseEntity<?> logout() {
         HttpHeaders headers = new HttpHeaders();
-        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "")
-                .httpOnly(true)
-                .secure(true)
-                .sameSite("None")
-                .maxAge(0)
-                .path("/")
-                .build();
+        String sameSite = cookieSameSite == null || cookieSameSite.isBlank() ? "Lax" : cookieSameSite;
+        ResponseCookie cookie = securityService.buildAuthCookie("", cookieSecure, sameSite, true);
         headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
         return new ResponseEntity<>("Successfully loggedOut", headers, HttpStatus.OK);
     }
@@ -599,13 +594,8 @@ public class appService {
             usersTableRepository.deleteById(uname);
             previousTableRepo.deleteById(uname);
             HttpHeaders headers = new HttpHeaders();
-            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", "")
-                    .httpOnly(true)
-                    .secure(true)
-                    .sameSite("None")
-                    .maxAge(0)
-                    .path("/")
-                    .build();
+            String sameSite = cookieSameSite == null || cookieSameSite.isBlank() ? "Lax" : cookieSameSite;
+            ResponseCookie cookie = securityService.buildAuthCookie("", cookieSecure, sameSite, true);
             headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
             return new ResponseEntity<>("Account deleted successfully", headers, HttpStatus.OK);
         } catch (Exception e) {

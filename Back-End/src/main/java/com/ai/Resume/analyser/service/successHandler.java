@@ -57,15 +57,18 @@ public class successHandler implements AuthenticationSuccessHandler {
         }
 
         String token = jwtService.generateToken(email);
-        ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token)
-                .path("/")
-                .httpOnly(true)
-                .maxAge(20 * 24 * 60 * 60)
-                .sameSite("None")
-                .secure(true)
-                .build();
+        String sameSite = cookieSameSite == null || cookieSameSite.isBlank() ? "Lax" : cookieSameSite;
+        boolean secureCookie = cookieSecure || request.isSecure();
+        ResponseCookie cookie = com.ai.Resume.analyser.service.securityService.buildAuthCookie(token, secureCookie, sameSite, false);
 
         response.addHeader("Set-Cookie", cookie.toString());
-        response.sendRedirect("https://careerpilot-ai-1-cgrw.onrender.com/");
+        String redirectUrl = request.getHeader("Origin");
+        if (redirectUrl == null || redirectUrl.isBlank()) {
+            redirectUrl = request.getHeader("Referer");
+        }
+        if (redirectUrl == null || redirectUrl.isBlank()) {
+            redirectUrl = "https://careerpilot-ai-1-cgrw.onrender.com/";
+        }
+        response.sendRedirect(redirectUrl);
     }
 }

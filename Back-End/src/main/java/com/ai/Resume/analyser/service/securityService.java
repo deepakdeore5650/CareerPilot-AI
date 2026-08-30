@@ -44,10 +44,18 @@ public class securityService {
     @Value("${app.cookie.secure:false}")
     private boolean cookieSecure;
 
-    @Value("${app.cookie.same-site:Strict}")
+    @Value("${app.cookie.same-site:Lax}")
     private String cookieSameSite;
 
-    
+    public static ResponseCookie buildAuthCookie(String token, boolean secure, String sameSite, boolean clear) {
+        return ResponseCookie.from("entrypasstoken", clear ? "" : token)
+                .path("/")
+                .httpOnly(true)
+                .maxAge(clear ? 0 : 20 * 24 * 60 * 60)
+                .sameSite(sameSite == null || sameSite.isBlank() ? "Lax" : sameSite)
+                .secure(secure)
+                .build();
+    }
 
     public ResponseEntity<?> register(userRegister reg) {
         otpVerify verify = otpVerifyRepository.findById(reg.getEmail()).orElse(null);
@@ -113,13 +121,11 @@ public class securityService {
             String token = jwt.generateToken(req.getEmail());
             usersTable user =usersTableRepository.findById(req.getEmail()).orElse(null);
             HttpHeaders headers = new HttpHeaders();
-            ResponseCookie cookie = ResponseCookie.from("entrypasstoken", token)
-                    .path("/")
-                    .httpOnly(true)
-                    .maxAge(20 * 24 * 60 * 60)
-                    .sameSite("None")
-                    .secure(true)
-                    .build();
+            String sameSite = cookieSameSite;
+            if (sameSite == null || sameSite.isBlank()) {
+                sameSite = "Lax";
+            }
+            ResponseCookie cookie = buildAuthCookie(token, cookieSecure, sameSite, false);
             headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
             loginResponse loginRes = new loginResponse(user.getUsername(), user.getPreviousResults(), user.getProfilePhoto());
             return new ResponseEntity<>(loginRes,headers,HttpStatus.OK);
