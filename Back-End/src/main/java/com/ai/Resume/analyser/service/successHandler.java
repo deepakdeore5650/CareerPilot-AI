@@ -30,8 +30,11 @@ public class successHandler implements AuthenticationSuccessHandler {
     @Value("${app.cookie.secure:false}")
     private boolean cookieSecure;
 
-    @Value("${app.cookie.same-site:Strict}")
+    @Value("${app.cookie.same-site:Lax}")
     private String cookieSameSite;
+
+    @Value("${app.frontend.url:http://localhost:5173}")
+    private String frontendUrl;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -62,12 +65,9 @@ public class successHandler implements AuthenticationSuccessHandler {
         ResponseCookie cookie = com.ai.Resume.analyser.service.securityService.buildAuthCookie(token, secureCookie, sameSite, false);
 
         response.addHeader("Set-Cookie", cookie.toString());
-        String redirectUrl = request.getHeader("Origin");
+        String redirectUrl = frontendUrl;
         if (redirectUrl == null || redirectUrl.isBlank()) {
-            redirectUrl = request.getHeader("Referer");
-        }
-        if (redirectUrl == null || redirectUrl.isBlank()) {
-            redirectUrl = "https://careerpilot-ai-1-cgrw.onrender.com/";
+            redirectUrl = "http://localhost:5173";
         }
         response.sendRedirect(redirectUrl);
     }

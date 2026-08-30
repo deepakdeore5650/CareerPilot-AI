@@ -4,7 +4,7 @@ import React from "react";
 const GoogleButton = ({ onClick, disabled }) => {
 
     const handleClick = () => {
-    const backendUrl = import.meta.env.VITE_API_BASE_URL || window.location.origin;
+    const backendUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:8086";
     window.location.href = `${backendUrl}/oauth2/authorization/google`;
   };
   return (
